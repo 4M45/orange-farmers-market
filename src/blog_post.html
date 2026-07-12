@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Orange Farmers Market Blog</title>
+    <meta name="description" content="{{ description }}">
+    <link rel="canonical" href="https://orangefarmersmarket.com/blog/{{ slug }}.html">
+    <link rel="stylesheet" href="/css/index.css">
+    
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://orangefarmersmarket.com/blog/{{ slug }}.html"
+      },
+      "headline": "{{ title }}",
+      "description": "{{ description }}",
+      "image": "https://orangefarmersmarket.com/images/hero.webp",  
+      "author": {
+        "@type": "Organization",
+        "name": "Orange Farmers Market"
+      },  
+      "publisher": {
+        "@type": "Organization",
+        "name": "Orange Farmers Market",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://orangefarmersmarket.com/images/hero.webp"
+        }
+      },
+      "datePublished": "2026-07-12"
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">Orange Farmers Market</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="/contact.html" class="btn">Get in Touch</a>
+    </header>
+
+    <main style="padding: 5rem 5%;">
+        <article class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <p style="color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">{{ date }}</p>
+            <h1 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 2rem;">{{ title }}</h1>
+            
+            <div class="blog-content">
+                {{ content }}
+            </div>
+            
+            <hr style="margin: 3rem 0; border: none; border-top: 1px solid rgba(0,0,0,0.1);">
+            
+            <div class="ad-slot" style="margin-top: 2rem;">
+                <p>Advertisement Space</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Orange Farmers Market. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="/about.html">About Us</a> | 
+            <a href="/contact.html">Contact</a> | 
+            <a href="/privacy.html">Privacy Policy</a> | 
+            <a href="/terms.html">Terms of Service</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -10,11 +10,13 @@ IMG_SRC = os.path.join(SRC_DIR, 'images')
 IMG_DIST = os.path.join(DIST_DIR, 'images')
 CSS_SRC = os.path.join(SRC_DIR, 'css')
 CSS_DIST = os.path.join(DIST_DIR, 'css')
+BLOG_DIST = os.path.join(DIST_DIR, 'blog')
 
 # Ensure dist directories exist
 os.makedirs(DIST_DIR, exist_ok=True)
 os.makedirs(IMG_DIST, exist_ok=True)
 os.makedirs(CSS_DIST, exist_ok=True)
+os.makedirs(BLOG_DIST, exist_ok=True)
 
 # Copy CSS and Images
 shutil.copytree(CSS_SRC, CSS_DIST, dirs_exist_ok=True)
@@ -24,6 +26,7 @@ shutil.copytree(IMG_SRC, IMG_DIST, dirs_exist_ok=True)
 env = Environment(loader=FileSystemLoader(SRC_DIR))
 template = env.get_template('template.html')
 simple_template = env.get_template('simple.html')
+blog_post_template = env.get_template('blog_post.html')
 
 # Data Matrix
 pages = [
@@ -89,6 +92,31 @@ pages = [
     }
 ]
 
+# Blog Data
+blog_data = [
+    {
+        "slug": "ultimate-guide-dates-hours",
+        "title": "The Ultimate Guide to Orange Farmers Market Dates & Hours",
+        "description": "Find the perfect time to visit the market. Discover orange farmers market dates, seasonal changes, and find an orange farmers market near me.",
+        "date": "July 12, 2026",
+        "content": "<p>When planning your weekly grocery shopping, knowing the exact <strong>orange farmers market dates</strong> is essential for getting the freshest local produce. Whether you're searching for an <em>orange farmers market near me</em> or just trying to beat the weekend rush, we've got you covered.</p><h2>Understanding the Market Schedule</h2><p>Our local vendors operate on a strict schedule designed to bring you goods at peak freshness. Generally, the core markets open at 9:00 AM and run until 1:00 PM. Arriving early guarantees you the best selection of organic fruits, artisanal cheeses, and fresh-baked breads.</p><p>Many residents frequently ask, \"When does the seasonal produce change?\" You'll find that our certified local farmers rotate their crops quarterly. By checking the official dates, you ensure that you never miss out on the short-lived strawberry season or the autumn pumpkin harvests.</p><h2>Navigating 'Near Me' Searches</h2><p>If you're constantly typing \"orange farmers market near me\" into your phone, consider making the Irvine Regional Park or Old Towne Orange locations your go-to hubs. Both offer ample parking if you arrive before 10:00 AM, making your weekend trip completely stress-free.</p><p>Remember, true agricultural quality is worth the trip. Experience the vibrant community and authoritative expertise of our vendors this weekend!</p>"
+    },
+    {
+        "slug": "why-sunday-is-the-best-day",
+        "title": "Why Sunday is the Best Day for Orange Markets",
+        "description": "Explore why orange markets sunday events are the highlight of the week for fresh produce and meeting orange farmers.",
+        "date": "July 15, 2026",
+        "content": "<p>There is a special energy that buzzes through the air during <strong>orange markets sunday</strong> events. While Saturday markets are bustling and fast-paced, Sunday offers a uniquely relaxed vibe that families and culinary enthusiasts absolutely love.</p><h2>Meeting the Orange Farmers</h2><p>Sundays are traditionally the days when the most experienced <em>orange farmers</em> bring out their specialty items. Because the frantic rush of Saturday has passed, farmers have more time to chat, share recipes, and explain their organic growing processes. This direct interaction is the cornerstone of trust in local agriculture.</p><p>From heirloom tomatoes to raw honey, Sunday vendors take pride in their authoritative knowledge of sustainable farming. When you buy on a Sunday, you're not just purchasing food; you're investing in the local economy and learning directly from the experts.</p><h2>The Weekend Vibe</h2><p>Why else should you prioritize a Sunday visit? The crowds are manageable, live acoustic music often fills the air, and you have the leisure to sip a fresh-pressed green juice while you stroll. It is the ultimate weekend wind-down, perfectly blending community connection with premium natural ingredients.</p>"
+    },
+    {
+        "slug": "meet-the-vendors-spotlight",
+        "title": "Meet the Vendors: A Spotlight on Orange Grove Organic Food Markets",
+        "description": "Get an inside look at orange farmers market vendors, the role of orange farmers market inc, and what makes orange grove organic food markets special.",
+        "date": "July 18, 2026",
+        "content": "<p>Behind every vibrant stall and overflowing wooden crate of fresh greens is a dedicated small business. Today, we're spotlighting the incredible <strong>orange farmers market vendors</strong> who make our weekends so delicious, with a special focus on the renowned <em>orange grove organic food markets</em>.</p><h2>The Standard of Organic Excellence</h2><p>When you visit the <strong>orange grove organic food markets</strong>, you are experiencing the pinnacle of sustainable agriculture. These vendors are carefully vetted by <em>orange farmers market inc</em>, the organizing body that ensures every participant meets strict, authoritative standards for organic certification and local sourcing.</p><p>Our certified technicians of the soil—the farmers—spend decades perfecting their craft. This expertise translates directly into the robust flavors and nutritional density of the produce you take home.</p><h2>Supporting the Orange Farmers Market Inc Network</h2><p>By shopping with these vendors, you are directly supporting the initiatives of Orange Farmers Market Inc. Their mission goes beyond commerce; they strive to educate the public on the environmental benefits of organic farming and provide a reliable, trustworthy marketplace.</p><p>Next time you visit, ask your vendor about their growing practices. You'll be amazed by the deep well of knowledge they possess and the incredible care that goes into every single harvest.</p>"
+    }
+]
+
 # Generate PSEO Pages
 url_list = []
 for page in pages:
@@ -103,9 +131,28 @@ for page in pages:
     
     url_list.append(f"https://orangefarmersmarket.com{page['canonical_path']}")
 
-# Generate Home Page (Root index.html)
-# We will just re-use the first market page as the home page for now, 
-# or a slightly modified version.
+# Generate Blog Posts
+blog_cards_html = ""
+for post in blog_data:
+    # Render individual post
+    html = blog_post_template.render(**post)
+    file_path = os.path.join(BLOG_DIST, f"{post['slug']}.html")
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+    
+    url_list.append(f"https://orangefarmersmarket.com/blog/{post['slug']}.html")
+    
+    # Generate HTML card for the index page
+    blog_cards_html += f"""
+    <div style='padding:1.5rem; background: var(--glass-bg); border:var(--glass-border); border-radius:12px; box-shadow:var(--glass-shadow);'>
+        <p style='color: var(--color-primary-dark); font-size: 0.85rem; font-weight:bold;'>{post['date']}</p>
+        <h3 style='margin-bottom:0.5rem;'><a href='/blog/{post['slug']}.html' style='color: var(--color-text);'>{post['title']}</a></h3>
+        <p style='font-size: 0.95rem; color: var(--color-text-muted);'>{post['description']}</p>
+        <a href='/blog/{post['slug']}.html' class='btn' style='margin-top:1rem; padding: 0.5rem 1rem; font-size: 0.9rem;'>Read More</a>
+    </div>
+    """
+
+# Generate Home Page
 home_data = pages[0].copy()
 home_data['canonical_path'] = '/'
 home_html = template.render(**home_data)
@@ -113,12 +160,12 @@ with open(os.path.join(DIST_DIR, 'index.html'), 'w', encoding='utf-8') as f:
     f.write(home_html)
 url_list.append("https://orangefarmersmarket.com/")
 
-# Generate AdSense Required Pages (Privacy, Terms, About, Contact) and Blog
+# Generate AdSense Required Pages (Privacy, Terms, About, Contact) and Blog Index
 static_pages = {
     "blog.html": {
         "title": "Our Blog",
         "description": "Read the latest news and updates from Orange Farmers Market.",
-        "content": "<p>Welcome to our blog! Stay tuned for seasonal recipes, farmer spotlights, and market updates.</p><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 2rem;'><div style='padding:1rem; border:1px solid #ccc; border-radius:8px;'><h4>Spring Harvest is Here</h4><p>Discover the freshest spring greens available this weekend.</p></div><div style='padding:1rem; border:1px solid #ccc; border-radius:8px;'><h4>Meet Our Artisans</h4><p>An inside look at the people behind our handcrafted goods.</p></div></div>"
+        "content": f"<p>Welcome to our blog! Stay tuned for seasonal recipes, farmer spotlights, and market updates.</p><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;'>{blog_cards_html}</div>"
     },
     "about.html": {
         "title": "About Us",
