@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Farmers Market | {{ service }} in {{ city }} | Top Rated</title>
+    <meta name="description" content="Looking for the best {{ service }} in {{ city }}? Discover fresh local produce, artisan goods, and {{ primary_benefit }} at {{ landmark }}.">
+    <link rel="canonical" href="https://orangefarmersmarket.com{{ canonical_path }}">
+    <link rel="stylesheet" href="/css/index.css">
+    
+    <!-- JSON-LD LocalBusiness & Service Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Orange Farmers Market - {{ market_name }}",
+      "image": "https://orangefarmersmarket.com/images/hero.webp",
+      "url": "https://orangefarmersmarket.com{{ canonical_path }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{ city }}",
+        "addressRegion": "{{ state_code }}"
+      },
+      "description": "Experience the best {{ service }} near {{ landmark }}. {{ primary_benefit }}.",
+      "telephone": "+1-800-555-FARM"
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">Orange Farmers Market</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="/contact.html" class="btn">Get in Touch</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="/images/hero.webp" alt="Vibrant {{ service }} in {{ city }}" class="hero-bg" width="1920" height="1080">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Premium <span>{{ service }}</span> in {{ city }}</h1>
+                <p>Welcome to the top-rated destination for {{ primary_benefit }} near {{ landmark }}. We bring the best of nature directly to your table.</p>
+                <a href="#content" class="btn">Discover More</a>
+            </div>
+        </section>
+
+        <section id="content" class="content-grid">
+            <article>
+                <div class="glass-card">
+                    <h2>{{ h2_1 }}</h2>
+                    <p>{{ p_1 }}</p>
+                    <img src="/images/produce.webp" alt="Fresh organic produce at the {{ market_name }}" class="content-image" loading="lazy" width="800" height="533">
+                    <p>{{ p_2 }}</p>
+                </div>
+
+                <div class="glass-card">
+                    <h2>{{ h2_2 }}</h2>
+                    <p>{{ p_3 }}</p>
+                    <p>{{ p_4 }}</p>
+                </div>
+                
+                <!-- Dedicated area for AdSense integration (Clear and separated from content) -->
+                <div class="ad-slot">
+                    <p>Advertisement Space</p>
+                </div>
+            </article>
+
+            <aside>
+                <div class="glass-card">
+                    <h3>Market Information</h3>
+                    <ul>
+                        <li><strong>Location:</strong> Near {{ landmark }}, {{ city }}</li>
+                        <li><strong>Highlights:</strong> {{ primary_benefit }}</li>
+                        <li><strong>Type:</strong> {{ service }}</li>
+                    </ul>
+                    <br>
+                    <a href="/contact.html" class="btn" style="width:100%; text-align:center;">Vendor Inquiries</a>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Orange Farmers Market. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="/about.html">About Us</a> | 
+            <a href="/contact.html">Contact</a> | 
+            <a href="/privacy.html">Privacy Policy</a> | 
+            <a href="/terms.html">Terms of Service</a>
+        </div>
+    </footer>
+</body>
+</html>

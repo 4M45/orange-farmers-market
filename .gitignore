@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+env/
+venv/
+.env
+
+# Build output
+dist/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Optional IDE files
+.vscode/
+.idea/

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Orange Farmers Market</title>
+    <meta name="description" content="{{ description }}">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Orange Farmers Market</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="/contact.html" class="btn">Get in Touch</a>
+    </header>
+
+    <main style="padding: 5rem 5%;">
+        <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <h1>{{ title }}</h1>
+            {{ content }}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Orange Farmers Market. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="/about.html">About Us</a> | 
+            <a href="/contact.html">Contact</a> | 
+            <a href="/privacy.html">Privacy Policy</a> | 
+            <a href="/terms.html">Terms of Service</a>
+        </div>
+    </footer>
+</body>
+</html>
