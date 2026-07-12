@@ -113,8 +113,13 @@ with open(os.path.join(DIST_DIR, 'index.html'), 'w', encoding='utf-8') as f:
     f.write(home_html)
 url_list.append("https://orangefarmersmarket.com/")
 
-# Generate AdSense Required Pages (Privacy, Terms, About, Contact)
+# Generate AdSense Required Pages (Privacy, Terms, About, Contact) and Blog
 static_pages = {
+    "blog.html": {
+        "title": "Our Blog",
+        "description": "Read the latest news and updates from Orange Farmers Market.",
+        "content": "<p>Welcome to our blog! Stay tuned for seasonal recipes, farmer spotlights, and market updates.</p><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 2rem;'><div style='padding:1rem; border:1px solid #ccc; border-radius:8px;'><h4>Spring Harvest is Here</h4><p>Discover the freshest spring greens available this weekend.</p></div><div style='padding:1rem; border:1px solid #ccc; border-radius:8px;'><h4>Meet Our Artisans</h4><p>An inside look at the people behind our handcrafted goods.</p></div></div>"
+    },
     "about.html": {
         "title": "About Us",
         "description": "Learn about Orange Farmers Market.",
