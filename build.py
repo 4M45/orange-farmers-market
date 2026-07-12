@@ -2,7 +2,6 @@ import os
 import shutil
 import json
 from jinja2 import Environment, FileSystemLoader
-from PIL import Image
 
 # Directories
 SRC_DIR = 'src'
@@ -17,18 +16,9 @@ os.makedirs(DIST_DIR, exist_ok=True)
 os.makedirs(IMG_DIST, exist_ok=True)
 os.makedirs(CSS_DIST, exist_ok=True)
 
-# Copy CSS
+# Copy CSS and Images
 shutil.copytree(CSS_SRC, CSS_DIST, dirs_exist_ok=True)
-
-# Optimize Images to WEBP
-for img_file in os.listdir(IMG_SRC):
-    if img_file.endswith('.png') or img_file.endswith('.jpg'):
-        img_path = os.path.join(IMG_SRC, img_file)
-        out_file = os.path.splitext(img_file)[0] + '.webp'
-        out_path = os.path.join(IMG_DIST, out_file)
-        
-        with Image.open(img_path) as img:
-            img.save(out_path, 'webp', quality=85)
+shutil.copytree(IMG_SRC, IMG_DIST, dirs_exist_ok=True)
 
 # Jinja Setup
 env = Environment(loader=FileSystemLoader(SRC_DIR))
